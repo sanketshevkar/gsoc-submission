@@ -1,37 +1,72 @@
-## Welcome to GitHub Pages
+## Signing Templates and Signing Contracts GSoC 2021
 
-You can use the [editor on GitHub](https://github.com/sanketshevkar/gsoc-submission/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+Student: Sanket Shevkar
+Mentor: Martin Halford
+Organisation: Accord Project
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Template Signing
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+#### Purpose: 
+The developer/author should be able to able digitally sign the template that the developer has developed. Dicussion about this can be found [here](https://github.com/accordproject/cicero/issues/262).
 
 ```markdown
-Syntax highlighted code block
+Pull Request [#688](https://github.com/accordproject/cicero/pull/688)
+Status: Merged
+Closes [#671](https://github.com/accordproject/cicero/issues/671)
 
-# Header 1
-## Header 2
-### Header 3
+# Prerequisites
 
-- Bulleted
-- List
+Create a PEM file containing the the private key and the certificate of the developer,
+following should be the format of the PEM file:
 
-1. Numbered
-2. List
+`-----BEGIN RSA PRIVATE KEY-----
+(Private Key: domain_name.key contents)
+-----END RSA PRIVATE KEY-----
+-----BEGIN CERTIFICATE-----
+(Primary SSL certificate: domain_name.crt contents)
+-----END CERTIFICATE-----`
 
-**Bold** and _Italic_ and `Code` text
+Create a pkcs#12 file:
 
-[Link](url) and ![Image](src)
+`openssl pkcs12 -export -in server.pem -out keystore.pkcs12`
+
+# Usage
+
+`cicero archive --template [template path] --output [output archive path] --keystore [pkcs#12 keystore path] --passphrase [password of the keystore]`
+
+`cicero verify --template [contract path]`
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Contract Signing
 
-### Jekyll Themes
+#### Purpose: 
+The parties involved in execution of a certain contract should be able to digitally sign the contract to validate it model, logic, data/text. Dicussion about this can be found [here](https://github.com/accordproject/cicero/issues/558).
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sanketshevkar/gsoc-submission/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```markdown
+Pull Request [#689](https://github.com/accordproject/cicero/pull/689)
+Status: Open
+This a part of a much larger new feature that is being built i.e. Contract Instances. 
+More information can be found [here](https://github.com/accordproject/lab-contract-design). 
 
-### Support or Contact
+# Prerequisites
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Create a PEM file containing the the private key and the certificate of the party,
+following should be the format of the PEM file:
+
+`-----BEGIN RSA PRIVATE KEY-----
+(Private Key: domain_name.key contents)
+-----END RSA PRIVATE KEY-----
+-----BEGIN CERTIFICATE-----
+(Primary SSL certificate: domain_name.crt contents)
+-----END CERTIFICATE-----`
+
+Create a pkcs#12 file:
+
+`openssl pkcs12 -export -in server.pem -out keystore.pkcs12`
+
+# Usage
+
+`cicero sign --contract [contract path] --output [output archive path] --keystore [pkcs#12 keystore path] --passphrase [password of the keystore] --signatory [name of the signatory]`
+
+`cicero verify --contract [contract path]`
+```
