@@ -6,7 +6,7 @@
 
 # Template Signing
 
-#### Purpose: 
+### Purpose: 
 The developer/author should be able to digitally sign the template that the developer has developed. Dicussion about this can be found [here](https://github.com/accordproject/cicero/issues/262).
 
 - Pull Request [#688](https://github.com/accordproject/cicero/pull/688)
@@ -41,7 +41,7 @@ cicero verify --template [template path]
 
 # Contract Signing
 
-#### Purpose: 
+### Purpose: 
 The parties involved in execution of a certain contract should be able to digitally sign the contract to validate it model, logic, data/text. Dicussion about this can be found [here](https://github.com/accordproject/cicero/issues/558).
 
 - Pull Request [#689](https://github.com/accordproject/cicero/pull/689)
