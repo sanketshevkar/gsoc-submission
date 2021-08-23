@@ -1,13 +1,13 @@
 ## Signing Templates and Signing Contracts GSoC 2021
 
-- Student: Sanket Shevkar
-- Mentor: Martin Halford
-- Organisation: Accord Project
+- Student: [Sanket Shevkar](https://github.com/sanketshevkar)
+- Mentor: [Martin Halford](https://github.com/martinhalford)
+- Organisation: [Accord Project](https://github.com/accordproject)
 
 # Template Signing
 
 #### Purpose: 
-The developer/author should be able to able digitally sign the template that the developer has developed. Dicussion about this can be found [here](https://github.com/accordproject/cicero/issues/262).
+The developer/author should be able to digitally sign the template that the developer has developed. Dicussion about this can be found [here](https://github.com/accordproject/cicero/issues/262).
 
 - Pull Request [#688](https://github.com/accordproject/cicero/pull/688)
 - Status: Merged
@@ -36,7 +36,7 @@ Create a pkcs#12 file:
 ```
 cicero archive --template [template path] --output [output archive path] --keystore [pkcs#12 keystore path] --passphrase [password of the keystore]
 
-cicero verify --template [contract path]
+cicero verify --template [template path]
 ```
 
 # Contract Signing
